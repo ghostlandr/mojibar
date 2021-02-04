@@ -1,6 +1,6 @@
 {
   "name": "mojibar",
-  "version": "2.6.2",
+  "version": "2.7.0",
   "description": "A menubar app adaptation of Emoji searcher.",
   "main": "index.js",
   "dependencies": {
@@ -16,17 +16,19 @@
   },
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . Mojibar --platform=darwin --arch=x64 --overwrite --icon=mojibar",
-    "build:linux": "electron-packager . Mojibar --platform=linux --arch=x64 --overwrite --icon=mojibar",
+    "build": "electron-builder -l -o",
     "test": "standard index.js app/search.js app/settings.js",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "pack": "electron-builder --dir"
   },
   "build": {
     "appId": "com.electron.mojibar",
     "productName": "Mojibar",
     "mac": {
       "category": "public.app-category.developer-tools"
+    },
+    "linux": {
+      "target": "tar.gz",
+      "category": "Utility"
     }
   },
   "repository": {
