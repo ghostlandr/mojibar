@@ -9,7 +9,7 @@ var mb = menubar({
   height: 330,
   icon: path.join(__dirname, '/app/Icon-Template.png'),
   preloadWindow: true,
-  windowPosition: 'topRight',
+  windowPosition: 'trayLeft',
   alwaysOnTop: true
 })
 
@@ -115,6 +115,17 @@ mb.on('ready', function ready () {
   mb.window.on('hide', function () {
     mb.window.webContents.send('fetch')
   })
+})
+
+// Close the window when losing focus
+mb.on('focus-lost', function focusLost () {
+  if (isMac) {
+    mb.hideWindow()
+  } else {
+    // Windows and Linux
+    mb.window.blur()
+    mb.hideWindow()
+  }
 })
 
 // Register a shortcut listener.
